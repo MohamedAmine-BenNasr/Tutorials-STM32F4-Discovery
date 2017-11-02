@@ -62,12 +62,12 @@ Lines 193 to 196 enable the clock for the GPIO ports.
 
 The init struct consists of 4 values that can be set. 
 
-1. Pin 
+##### 1. Pin 
 
   - The Pin(s) that are about to be initialised 
   - e.g. GPIO_PIN_12 (numbers reach from 0 to 15, or GPIO_PIN_ALL) 
 
-2. Mode 
+##### 2. Mode 
 
   - The mode of the selected pins (Input / Output / etc.). 
   - e.g. GPIO_MODE_INPUT. 
