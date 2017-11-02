@@ -139,7 +139,7 @@ Toggle an output pins state
 GPIOD -> ODR ^= GPIO_PIN_12;
 ```
 An output pin can also be set using the integrated HAL library function 
-```C++
+```Java
 /* set PD12 */
 HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
 /* reset PD12 */ 
