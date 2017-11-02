@@ -1,6 +1,7 @@
 #          Tutorial CMX 01 GPIO Out STM32F4Discovery
 
 
+## GPIO Operations on STM32 Microcontrollers using HAL
 
 You can use the STM32CubeMX tool to create the necessary config. files to enable the GPIO Pins. 
 In this tutorial I’m going to explain how you can modify the generated GPIO configs and add additional GPIOs. 
