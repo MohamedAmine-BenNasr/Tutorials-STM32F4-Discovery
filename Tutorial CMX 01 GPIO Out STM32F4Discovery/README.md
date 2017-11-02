@@ -100,3 +100,19 @@ The init struct consists of 4 values that can be set.
       GPIO_SPEED_MEDIUM 
       GPIO_SPEED_HIGH 
 ```
+### How to add / remove / change GPIO pins 
+Example shows push-pull output declaration of four GPIO port D pins 
+
+It is really not that hard, just fill the init struct with the desired values and call the HAL_GPIO_Init() 
+function with the corresponding GPIO port. 
+
+If you need yet another pin with the same specifications and GPIO port as a pin that has already been 
+declared, it is even simpler. A bitwise or masking of the Pin argument with the new pin does the job. 
+
+``` C++
+/*Configure GPIO pin : PA0, PA1 and PA2 */
+ GPIO_InitStruct.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2; 
+ GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP; 
+ GPIO_InitStruct.Speed = GPIO_SPEED_LOW; 
+ HAL_GPIO_Init(GPIOA, &GPIO_InitStruct); 
+ ```
