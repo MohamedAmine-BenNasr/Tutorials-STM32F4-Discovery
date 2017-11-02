@@ -110,9 +110,40 @@ If you need yet another pin with the same specifications and GPIO port as a pin 
 declared, it is even simpler. A bitwise or masking of the Pin argument with the new pin does the job. 
 
 ``` C++
-/*Configure GPIO pin : PA0, PA1 and PA2 */
- GPIO_InitStruct.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2; 
+/*Configure GPIO pin : PD12, PD13, PD14 and PD15 */
+ GPIO_InitStruct.Pin = GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15; 
  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP; 
  GPIO_InitStruct.Speed = GPIO_SPEED_LOW; 
- HAL_GPIO_Init(GPIOA, &GPIO_InitStruct); 
+ HAL_GPIO_Init(GPIOD, &GPIO_InitStruct); 
  ```
+ 
+### Using a GPIO output inside the program 
+
+Changes of the output state of an output pin are written to the GPIOx_ODR register (output data register). This works best with masking. 
+
+Turning on an output pin 
+``` C++
+/* turn on PD12 */
+GPIOD -> ODR |= GPIO_PIN_12; 
+```
+
+Turning off an output pin 
+``` C++
+/* turn off PD12 */
+GPIOD -> ODR &= ~GPIO_PIN_12; 
+```
+
+Toggle an output pins state 
+``` C++
+/* toggle PD12 */
+GPIOD -> ODR ^= GPIO_PIN_12;
+```
+An output pin can also be set using the integrated HAL library function 
+```C++
+/* set PD12 */
+HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+/* reset PD12 */ 
+HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET); 
+```
+
+ 
