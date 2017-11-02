@@ -74,10 +74,29 @@ The init struct consists of 4 values that can be set.
   - Possible assignments are the following : 
   
 ``` Json
-      GPIO_MODE_INPUT                                 floating input. 
-      GPIO_MODE_OUTPUT_PP                             output push-pull. 
-      GPIO_MODE_OUTPUT_OD                             output open drain. 
-      GPIO_MODE_AF_PP alternate                       function output push-pull. 
-      GPIO_MODE_AF_OD alternate                       function output open drain. 
+      GPIO_MODE_INPUT                                 floating input
+      GPIO_MODE_OUTPUT_PP                             output push-pull
+      GPIO_MODE_OUTPUT_OD                             output open drain
+      GPIO_MODE_AF_PP alternate                       function output push-pull
+      GPIO_MODE_AF_OD alternate                       function output open drain
+      GPIO_MODE_AF_INPUT                              alternate function input 
+```
 
+#### 3. Pull 
+
+- Pull-up or Pull-down resistors for the specified pins. 
+- Can be the following: 
+``` Json
+      GPIO_NOPULL 
+      GPIO_PULLUP 
+      GPIO_PULLDOWN 
+````
+#### 4. Speed 
+
+- Specifies the speed for the selected pins 
+- Can be the following: 
+``` Json
+      GPIO_SPEED_LOW 
+      GPIO_SPEED_MEDIUM 
+      GPIO_SPEED_HIGH 
 ```
