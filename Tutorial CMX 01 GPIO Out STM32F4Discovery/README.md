@@ -72,6 +72,16 @@ The init struct consists of 4 values that can be set.
   - The mode of the selected pins (Input / Output / etc.). 
   - e.g. GPIO_MODE_INPUT. 
   - Possible assignments are the following : 
+  
+  # Color [![GoDoc](https://godoc.org/github.com/fatih/color?status.svg)](https://godoc.org/github.com/fatih/color) [![Build Status](https://img.shields.io/travis/fatih/color.svg?style=flat-square)](https://travis-ci.org/fatih/color)
+
+
+
+Color lets you use colorized outputs in terms of [ANSI Escape
+Codes](http://en.wikipedia.org/wiki/ANSI_escape_code#Colors) in Go (Golang). It
+has support for Windows too! The API can be used in several ways, pick one that
+suits you.
+
 
       color.Blue(GPIO_MODE_INPUT)                                 floating input. 
       GPIO_MODE_OUTPUT_PP                             output push-pull. 
