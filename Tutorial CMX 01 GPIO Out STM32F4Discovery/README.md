@@ -139,11 +139,16 @@ Toggle an output pins state
 GPIOD -> ODR ^= GPIO_PIN_12;
 ```
 An output pin can also be set using the integrated HAL library function 
-```Java
+```C++
 /* set PD12 */
 HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
 /* reset PD12 */ 
 HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET); 
 ```
 
- 
+### Document Created by Mohamed Amine Ben Nasr
+
+This tutorial is very basic and might not show the best way to use the STM32 environment. 
+It still might help you get into the whole HAL philosophy of STM if you are coming from another 
+platform. This document is free of copyright.
+
