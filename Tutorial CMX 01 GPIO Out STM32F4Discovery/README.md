@@ -1,7 +1,7 @@
 #          Tutorial CMX 01 GPIO Out STM32F4Discovery
 
 
-## GPIO Operations on STM32 Microcontrollers using HAL
+### GPIO Operations on STM32 Microcontrollers using HAL
 
 You can use the STM32CubeMX tool to create the necessary config. files to enable the GPIO Pins. 
 In this tutorial I’m going to explain how you can modify the generated GPIO configs and add additional GPIOs. 
@@ -28,3 +28,29 @@ Generating the config . files from STM 32 CubeMX.
 ![1](https://user-images.githubusercontent.com/32094503/32344214-5ee429c0-c006-11e7-9e41-81a7959d3e71.PNG)
 
 ![2](https://user-images.githubusercontent.com/32094503/32344267-8fc4462e-c006-11e7-9424-34c0d5781aa7.PNG)
+
+Now let’s see what the code generator did 
+
+``` C++
+static void MX_GPIO_Init(void)
+{
+
+  GPIO_InitTypeDef GPIO_InitStruct;
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : PD12 PD13 PD14 PD15 */
+  GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+}
+
+```
