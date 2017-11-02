@@ -73,7 +73,7 @@ The init struct consists of 4 values that can be set.
   - e.g. GPIO_MODE_INPUT. 
   - Possible assignments are the following : 
 
-      GPIO_MODE_INPUT                                 floating input. 
+      color.Blue(GPIO_MODE_INPUT)                                 floating input. 
       GPIO_MODE_OUTPUT_PP                             output push-pull. 
       GPIO_MODE_OUTPUT_OD                             output open drain. 
       GPIO_MODE_AF_PP alternate                       function output push-pull. 
