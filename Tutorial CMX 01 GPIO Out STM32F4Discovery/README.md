@@ -1,7 +1,5 @@
 #          Tutorial CMX 01 GPIO Out STM32F4Discovery
-```bash
-go get github.com/fatih/color
-```
+
 
 ### GPIO Operations on STM32 Microcontrollers using HAL
 
@@ -76,15 +74,11 @@ The init struct consists of 4 values that can be set.
   - Possible assignments are the following : 
   
 
-
-
-
-
-
-
-      color.Blue(GPIO_MODE_INPUT)                                 floating input. 
+``` Color
+      GPIO_MODE_INPUT                                 floating input. 
       GPIO_MODE_OUTPUT_PP                             output push-pull. 
       GPIO_MODE_OUTPUT_OD                             output open drain. 
       GPIO_MODE_AF_PP alternate                       function output push-pull. 
       GPIO_MODE_AF_OD alternate                       function output open drain. 
 
+```
