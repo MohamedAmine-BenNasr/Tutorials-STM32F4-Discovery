@@ -23,3 +23,5 @@ Generating the config . files from STM 32 CubeMX.
 6. Go to Project > Generate code.
 7. Enter a project name and select MDK-ARM V5.
 8. Generate the code and open the project in Keil uVision.
+
+![1](https://user-images.githubusercontent.com/32094503/32344214-5ee429c0-c006-11e7-9e41-81a7959d3e71.PNG)
