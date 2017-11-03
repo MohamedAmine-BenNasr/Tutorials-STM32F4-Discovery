@@ -20,7 +20,7 @@ Generating the config . files from STM 32 CubeMX.
 2. Select the STM32F4 Discovery from the Borards tab.
 3. Set and configure the RCC (HSE) to Crystal/Cerami c Resonator.
 4. Configure the SYSCLK at 168 MHz and peripheral clocks APB1 at 21 MHz.
-5. Set any GPIO to Output (I used P D1 2, PD13, PD14 and PD15).
+5. Set any GPIO to Output (I used PD12, PD13, PD14 and PD15).
 6. Go to Project > Generate code.
 7. Enter a project name and select MDK-ARM V5.
 8. Generate the code and open the project in Keil uVision.
