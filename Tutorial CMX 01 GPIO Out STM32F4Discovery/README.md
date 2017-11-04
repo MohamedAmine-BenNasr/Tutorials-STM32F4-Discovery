@@ -110,12 +110,18 @@ If you need yet another pin with the same specifications and GPIO port as a pin 
 declared, it is even simpler. A bitwise or masking of the Pin argument with the new pin does the job. 
 
 ``` C++
-/*Configure GPIO pin : PD12, PD13, PD14 and PD15 */
- GPIO_InitStruct.Pin = GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15; 
- GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- GPIO_InitStruct.Pull = GPIO_NOPULL;
- GPIO_InitStruct.Speed = GPIO_SPEED_LOW; 
- HAL_GPIO_Init(GPIOD, &GPIO_InitStruct); 
+  /*Configure GPIO pin : PA0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PD12 */
+  GPIO_InitStruct.Pin = GPIO_PIN_12;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
  ```
  
 ### Using a GPIO output inside the program 
@@ -145,6 +151,28 @@ An output pin can also be set using the integrated HAL library function
 HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
 /* reset PD12 */ 
 HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET); 
+```
+
+### Reading a GPIO input inside the program
+
+The current state of an input can be read from its GPIOx_IDR register (input data register)
+Again, this works best using bit masking.
+
+Reading an input pin
+```C++
+/* read PA0 */
+if(GPIOA -> IDR & GPIO_PIN_0)
+{
+/* user code */
+}
+```
+Or with the HAL library function
+```C++
+/* read PA0 */
+if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0))
+{
+/* user code */
+}
 ```
 
 ### Document Created by Mohamed Amine Ben Nasr
