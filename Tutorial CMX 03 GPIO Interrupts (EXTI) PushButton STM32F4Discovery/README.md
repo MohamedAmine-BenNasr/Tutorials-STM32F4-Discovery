@@ -1,7 +1,7 @@
-#          Tutorial CMX 03 GPIO Interrupts (EXTI) PushButton STM32F4Discovery
+#          Tutorial CMX 03 GPIO External Interrupts (EXTI) PushButton STM32F4Discovery
 
 
-### GPIO Interrupts (EXTI) on STM32 Microcontrollers using HAL
+### GPIO External Interrupts (EXTI) on STM32 Microcontrollers using HAL
 
 The STM32 microcontroller family offers multiple GPIO interrupt pins. The STM32CubeMX Software 
 comes in handy when configuring the parameters of these pins. However, the actual usage of  
@@ -107,6 +107,25 @@ void EXTI0_IRQHandler(void)
 }
 
 ```
+
+Stabilization of the input signal.
+```C++
+for(int i = 0 ; i < 1000000 ; i ++);
+```
+
+The instructions within the if-statement is only executed when an EXTI interrupt on EXTI channel 0 occurs. 
+```C++
+if(__HAL_GPIO_EXTI_GET_FLAG(GPIO_PIN_0))	
+     HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);  
+```
+Keep the following makro in mind when filtering EXTI interrups: 
+It takes the EXTI channel as an argument, where x is any numer from 0 to 15. 
+It returns true, when the interrupt flag for the given channel is set. 
+```C++
+__HAL_GPIO_EXTI_GET_FLAG(GPIO_PIN_x)
+ 
+```
+
 
 ### Document Created by Mohamed Amine Ben Nasr
 
