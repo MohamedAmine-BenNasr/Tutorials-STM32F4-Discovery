@@ -91,6 +91,8 @@ code segments simply clears the interrupt flag of the EXTI channels.
 Now to execute something on an EXTI interrupt event, you could simply add your code between the 
 user code blocks. This code is then executed with every EXTI event on any enabled EXTI channel. 
 
+![exti](https://user-images.githubusercontent.com/32094503/32409826-95dd98b8-c1b3-11e7-85a9-8d588149a26f.png)
+
 ```C++
 void EXTI0_IRQHandler(void)
 {
