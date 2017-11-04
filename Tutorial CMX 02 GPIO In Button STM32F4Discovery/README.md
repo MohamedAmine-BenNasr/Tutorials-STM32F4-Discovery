@@ -26,7 +26,7 @@ Generating the config . files from STM 32 CubeMX.
 8. Generate the code and open the project in Keil uVision.
 
 
-
+![1](https://user-images.githubusercontent.com/32094503/32401187-6a48345a-c10a-11e7-8314-f243f743eca3.PNG)
 ![2](https://user-images.githubusercontent.com/32094503/32344267-8fc4462e-c006-11e7-9424-34c0d5781aa7.PNG)
 
 Now let’s see what the code generator did 
