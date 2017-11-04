@@ -27,7 +27,20 @@ Generating the config. files from STM32CubeMX.
 
 
 ![1](https://user-images.githubusercontent.com/32094503/32407023-7947c880-c182-11e7-825f-5300c28d2ebb.PNG)
-![2](https://user-images.githubusercontent.com/32094503/32344267-8fc4462e-c006-11e7-9424-34c0d5781aa7.PNG)
+
+6. Click the configuration tab and click on the GPIO button 
+7. Here you can set the interrupt parameters for EXTI0
+I set the GPIO mode to detect falling edges (since the user button has a pull-up resistor) 
+Hit Apply and Ok to save the changes. 
+
+![3](https://user-images.githubusercontent.com/32094503/32407034-b18e54e8-c182-11e7-95e2-bd2d8b02d605.PNG)
+
+8. Next, click the NVIC button 
+9. Enable EXTI lines 0 (since we use EXTI0) 
+10. The priority is 0, this is because we are not using FreeRTOS 
+
+![2](https://user-images.githubusercontent.com/32094503/32407033-ac8630b0-c182-11e7-8f16-9fd1a3ae7b73.PNG)
+
 
 Now let’s see what the code generator did 
 
