@@ -91,8 +91,6 @@ code segments simply clears the interrupt flag of the EXTI channels.
 Now to execute something on an EXTI interrupt event, you could simply add your code between the 
 user code blocks. This code is then executed with every EXTI event on any enabled EXTI channel. 
 
-![exti](https://user-images.githubusercontent.com/32094503/32409826-95dd98b8-c1b3-11e7-85a9-8d588149a26f.png)
-
 ```C++
 void EXTI0_IRQHandler(void)
 {
@@ -109,6 +107,16 @@ void EXTI0_IRQHandler(void)
 }
 
 ```
+
+Thus an entire GPIO port or port pins from different GPIO ports can be configured as external interrupts. Interrupts in all pins is an unnecessary stuff. We can also decide when to sense an interrupt – on rising/falling or both edges. All these settings are separately stored, allowing high flexibility.
+
+![exti](https://user-images.githubusercontent.com/32094503/32409826-95dd98b8-c1b3-11e7-85a9-8d588149a26f.png)
+
+The EXTI lines 0 – 4 are individually and directly connected to the NVIC interface while the remaining higher order EXTI lines are grouped into two – one ranging from EXTI 5 to 9 and the other from 10 – 15. The upper EXTI pins are thus not individually and directly connected to the NVIC. Owing to this EXTI 0 – 4 have separate unique interrupt vector addresses while the rest have two separate interrupt vector addresses.
+
+![exti_to-nvic](https://user-images.githubusercontent.com/32094503/32409849-7421b0dc-c1b4-11e7-948e-a04984f39229.png)
+
+
 
 Stabilization of the input signal.
 ```C++
