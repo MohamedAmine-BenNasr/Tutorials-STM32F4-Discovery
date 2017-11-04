@@ -124,6 +124,23 @@ But you might want to do different things, when different interrupt pins are tri
 You can filter the interrupt event with a simple if-statement. 
 It is important to place this if statement before clearing the interrupt flags. 
 
+```C++
+void EXTI0_IRQHandler(void)
+{
+	for(int i = 0 ; i < 1000000 ; i ++); // stabilization of the input signal
+	
+	if(__HAL_GPIO_EXTI_GET_FLAG(GPIO_PIN_0))	
+     HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);         
+
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
+	
+  /* USER CODE BEGIN EXTI0_IRQn 1 */
+
+  /* USER CODE END EXTI0_IRQn 1 */
+}
+
+```
+
 Stabilization of the input signal.
 ```C++
 for(int i = 0 ; i < 1000000 ; i ++);
