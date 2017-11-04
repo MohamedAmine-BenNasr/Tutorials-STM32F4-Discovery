@@ -18,16 +18,15 @@ This tutorial uses the following equipment:
 
 Generating the config. files from STM32CubeMX.  
 
-1.Open STM32CubeMX and open a new project. 
-2.Select the STM32F4 Discovery from the Borards tab.
-3.Set and configure the RCC (HSE) to Crystal/Ceramic Resonator.
-4.Set any GPIO to Output (I used PD12 and PD13).
-5.Set PA0 as GPIO_EXTI0 (this is the blue user button on the STM32F4 Discovery) 
-6.(optional) set any GPIO pin as output (and connect an LED to it, here PC8 is used) 
-7.
+1. Open STM32CubeMX and open a new project. 
+2. Select the STM32F4 Discovery from the Borards tab.
+3. Set and configure the RCC (HSE) to Crystal/Ceramic Resonator.
+4. Set any GPIO to Output (I used PD12 and PD13).
+5. Set PA0 as GPIO_EXTI0 (this is the blue user button on the STM32F4 Discovery). 
 
 
-![1](https://user-images.githubusercontent.com/32094503/32401187-6a48345a-c10a-11e7-8314-f243f743eca3.PNG)
+
+![1](https://user-images.githubusercontent.com/32094503/32407023-7947c880-c182-11e7-825f-5300c28d2ebb.PNG)
 ![2](https://user-images.githubusercontent.com/32094503/32344267-8fc4462e-c006-11e7-9424-34c0d5781aa7.PNG)
 
 Now let’s see what the code generator did 
