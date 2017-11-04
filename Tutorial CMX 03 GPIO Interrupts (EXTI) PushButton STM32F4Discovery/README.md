@@ -41,8 +41,12 @@ Hit Apply and Ok to save the changes.
 
 ![2](https://user-images.githubusercontent.com/32094503/32407033-ac8630b0-c182-11e7-8f16-9fd1a3ae7b73.PNG)
 
+13. Go to Project > Generate code. 
+14. Enter a project name and select MDK-ARM V5. 
+15. Generate the code and open the project in Keil uVision. 
 
-Now let’s see what the code generator did 
+The code generator should output the desired code as usual. 
+Note, that the EXTI initialisation takes part within the GPIO init function call. 
 
 ``` C++
 static void MX_GPIO_Init(void)
@@ -52,112 +56,56 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12|GPIO_PIN_13, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PD12 PD13 PD14 PD15 */
-  GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
+  /*Configure GPIO pin : PA0 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PD12 PD13 */
+  GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+
 }
 
 ```
 
-The concept is simple, init struct is defined, this struct is filled with information. 
-This information will be processed by the HAL library at the function call HAL_GPIO_Init(). 
+### Do something on an interrupt event
+Open the file stm32f0xx_it.c 
+That is where the magic happens. Somewhere on line 99 should be a function called EXTI0_IRQHandler. 
+Each time an EXTI interrupt is triggered, this function gets called. The statement between the two user 
+code segments simply clears the interrupt flag of the EXTI channels. 
+Now to execute something on an EXTI interrupt event, you could simply add your code between the 
+user code blocks. This code is then executed with every EXTI event on any enabled EXTI channel. 
 
-Lines 193 to 196 enable the clock for the GPIO ports. 
-
-The init struct consists of 4 values that can be set. 
-
-#### 1. Pin 
-
-  - The Pin(s) that are about to be initialised 
-  - e.g. GPIO_PIN_12 (numbers reach from 0 to 15, or GPIO_PIN_ALL) 
-
-#### 2. Mode 
-
-  - The mode of the selected pins (Input / Output / etc.). 
-  - e.g. GPIO_MODE_INPUT. 
-  - Possible assignments are the following : 
-  
-``` Json
-      GPIO_MODE_INPUT                                 floating input
-      GPIO_MODE_OUTPUT_PP                             output push-pull
-      GPIO_MODE_OUTPUT_OD                             output open drain
-      GPIO_MODE_AF_PP alternate                       function output push-pull
-      GPIO_MODE_AF_OD alternate                       function output open drain
-      GPIO_MODE_AF_INPUT                              alternate function input 
-```
-
-#### 3. Pull 
-
-- Pull-up or Pull-down resistors for the specified pins. 
-- Can be the following: 
-``` Json
-      GPIO_NOPULL 
-      GPIO_PULLUP 
-      GPIO_PULLDOWN 
-````
-#### 4. Speed 
-
-- Specifies the speed for the selected pins 
-- Can be the following: 
-``` Json
-      GPIO_SPEED_LOW 
-      GPIO_SPEED_MEDIUM 
-      GPIO_SPEED_HIGH 
-```
-### How to add / remove / change GPIO pins 
-Example shows push-pull output declaration of four GPIO port D pins 
-
-It is really not that hard, just fill the init struct with the desired values and call the HAL_GPIO_Init() 
-function with the corresponding GPIO port. 
-
-If you need yet another pin with the same specifications and GPIO port as a pin that has already been 
-declared, it is even simpler. A bitwise or masking of the Pin argument with the new pin does the job. 
-
-``` C++
-/*Configure GPIO pin : PD12, PD13, PD14 and PD15 */
- GPIO_InitStruct.Pin = GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15; 
- GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- GPIO_InitStruct.Pull = GPIO_NOPULL;
- GPIO_InitStruct.Speed = GPIO_SPEED_LOW; 
- HAL_GPIO_Init(GPIOD, &GPIO_InitStruct); 
- ```
- 
-### Using a GPIO output inside the program 
-
-Changes of the output state of an output pin are written to the GPIOx_ODR register (output data register). This works best with masking. 
-
-Turning on an output pin 
-``` C++
-/* turn on PD12 */
-GPIOD -> ODR |= GPIO_PIN_12; 
-```
-
-Turning off an output pin 
-``` C++
-/* turn off PD12 */
-GPIOD -> ODR &= ~GPIO_PIN_12; 
-```
-
-Toggle an output pins state 
-``` C++
-/* toggle PD12 */
-GPIOD -> ODR ^= GPIO_PIN_12;
-```
-An output pin can also be set using the integrated HAL library function 
 ```C++
-/* set PD12 */
-HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
-/* reset PD12 */ 
-HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET); 
+void EXTI0_IRQHandler(void)
+{
+	for(int i = 0 ; i < 1000000 ; i ++); // stabilization of the input signal
+	
+	if(__HAL_GPIO_EXTI_GET_FLAG(GPIO_PIN_0))	
+     HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);         
+
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
+	
+  /* USER CODE BEGIN EXTI0_IRQn 1 */
+
+  /* USER CODE END EXTI0_IRQn 1 */
+}
+
 ```
 
 ### Document Created by Mohamed Amine Ben Nasr
