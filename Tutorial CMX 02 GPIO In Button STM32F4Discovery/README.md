@@ -1,4 +1,4 @@
-#          Tutorial CMX 01 GPIO In STM32F4Discovery
+#          Tutorial CMX 02 GPIO In STM32F4Discovery
 
 
 ### GPIO Operations on STM32 Microcontrollers using HAL
