@@ -84,6 +84,7 @@ static void MX_GPIO_Init(void)
 ```
 
 ### Do something on an interrupt event
+
 Open the file stm32f0xx_it.c 
 That is where the magic happens. Somewhere on line 99 should be a function called EXTI0_IRQHandler. 
 Each time an EXTI interrupt is triggered, this function gets called. The statement between the two user 
@@ -117,6 +118,11 @@ The EXTI lines 0 – 4 are individually and directly connected to the NVIC inter
 ![exti_to-nvic](https://user-images.githubusercontent.com/32094503/32409849-7421b0dc-c1b4-11e7-948e-a04984f39229.png)
 
 
+### Filter EXTI interrupt events
+
+But you might want to do different things, when different interrupt pins are triggered. 
+You can filter the interrupt event with a simple if-statement. 
+It is important to place this if statement before clearing the interrupt flags. 
 
 Stabilization of the input signal.
 ```C++
