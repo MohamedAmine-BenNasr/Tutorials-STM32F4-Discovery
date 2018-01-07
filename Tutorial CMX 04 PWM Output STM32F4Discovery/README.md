@@ -9,3 +9,12 @@ I used the following equipment:
 - Keil uVision 5 with the necessary packages for STM32F4 Discovery boards installed.
 - STLink USB Driver.
 - STM 32 CubeMX.
+
+### STM32CubeMX 
+
+Generating the config. files from STM32CubeMX.  
+
+1. Open STM32CubeMX and open a new project. 
+2. Select the STM32F4 Discovery from the Borards tab.
+3. Set and configure the RCC (HSE) to Crystal/Ceramic Resonator.
+4. Set and configure TIM4 as PWM Generation CH1 (correspond to PD12 PIN).
