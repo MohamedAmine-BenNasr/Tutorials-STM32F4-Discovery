@@ -98,9 +98,8 @@ Duty cycle (%) = (tON x 100) / Period
 
 PWM signal is commonly used to control devices such as speed of DC motor or brightness of the bulb. The advantages of PWM signal are: reduces energy loss due to constant stimulation and can be connected to a microcontroller which can further be connected to the computer and give power to the device.  Duty cycle adjustment is easy to make. Furthermore, the PWM signal is used to send commands to devices such as RC servo motor and so on.
 
-### Function generate PWM signal
-we will create a function SetPWM which takes as parameter TIM_HandleTypeDef timer, uint32_t channel, uint16_t period, uint16_t pulse 
-and in this function we will re-configure the TIM4 and finally generate the PWM signal with a period and a variable pulse.
+### Generate PWM signal 
+we will create a function SetPWM which takes as parameter TIM_HandleTypeDef timer (number of timer used), uint32_t channel (number of PWM Channel used), uint16_t period (period = ton + toff), uint16_t pulse (ton).and in this function we will re-configure the TIM4 and finally generate the PWM signal with a period and a variable pulse.
 
 ```C++
 void SetPWM(TIM_HandleTypeDef timer, uint32_t channel, uint16_t period, uint16_t pulse) 
@@ -123,4 +122,14 @@ void SetPWM(TIM_HandleTypeDef timer, uint32_t channel, uint16_t period, uint16_t
 // start pwm generation
 } 
 ```
+#### Example of using this function period = 255 and variable pulse
+```C++
+		for(int i=0; i<256; i++)
+		{
+			SetPWM(htim4, TIM_CHANNEL_1, 255, i); 
+			HAL_Delay(25); 
+		} 
+```
 
+### Document Created by Mohamed Amine Ben Nasr
+This tutorial is very basic and might not show the best way to use the STM32 environment. It still might help you get into the whole HAL philosophy of STM if you are coming from another platform. This document is free of copyright
