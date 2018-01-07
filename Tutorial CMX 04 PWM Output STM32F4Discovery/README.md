@@ -23,3 +23,5 @@ Generating the config. files from STM32CubeMX.
 
 6. Click the configuration tab and click on the TIM4 button 
 7. The TIM4 is configured in PWM 1 mode and the pulsation is 0 (the upper code is dragged into the main code), the fast mode is deactivated and the polarity is set high.
+
+![3](https://user-images.githubusercontent.com/32094503/34652043-4ce940a0-f3d9-11e7-9c94-bb4be8bcdb1c.PNG)
