@@ -86,7 +86,7 @@ static void MX_GPIO_Init(void)
 }
 ``` 
 
-### principle of using PWM signals
+### Principle of using PWM signals
 Pulse Width Modulation (PWM) is a periodic signal with a fixed frequency. User need to adjust the width of the pulse (i.e. the time for which the pulse is ON). Consecutive ON and OFF in a pulse is known as the duty cycle which can be calculated by the following equations.
 
 Duty cycle (%) = (tON x 100) / Period
@@ -95,3 +95,32 @@ Duty cycle (%) = (tON x 100) / Period
 
 
 ![image](https://user-images.githubusercontent.com/32094503/34652215-9ba7446a-f3db-11e7-8a6c-d6ba75481d8b.png)
+
+PWM signal is commonly used to control devices such as speed of DC motor or brightness of the bulb. The advantages of PWM signal are: reduces energy loss due to constant stimulation and can be connected to a microcontroller which can further be connected to the computer and give power to the device.  Duty cycle adjustment is easy to make. Furthermore, the PWM signal is used to send commands to devices such as RC servo motor and so on.
+
+### Function generate PWM signal
+we will create a function SetPWM which takes as parameter TIM_HandleTypeDef timer, uint32_t channel, uint16_t period, uint16_t pulse 
+and in this function we will re-configure the TIM4 and finally generate the PWM signal with a period and a variable pulse.
+
+```C++
+void SetPWM(TIM_HandleTypeDef timer, uint32_t channel, uint16_t period, uint16_t pulse) 
+{ 
+  HAL_TIM_PWM_Stop(&timer, channel);    
+// stop generation of pwm
+  TIM_OC_InitTypeDef sConfigOC; 
+	timer.Init.Prescaler = 0;
+  timer.Init.Period = period;           
+// set the period duration
+  HAL_TIM_PWM_Init(&timer);  
+// reinititialise with new period value
+  sConfigOC.OCMode = TIM_OCMODE_PWM1; 
+  sConfigOC.Pulse = pulse;              
+// set the pulse duration 
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH; 
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE; 
+  HAL_TIM_PWM_ConfigChannel(&timer, &sConfigOC, channel); 
+  HAL_TIM_PWM_Start(&timer, channel);   
+// start pwm generation
+} 
+```
+
