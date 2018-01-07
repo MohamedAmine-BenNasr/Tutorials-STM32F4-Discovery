@@ -87,3 +87,10 @@ static void MX_GPIO_Init(void)
 ``` 
 
 ### principle of using PWM signals
+Pulse Width Modulation (PWM) is a periodic signal with a fixed frequency. User need to adjust the width of the pulse (i.e. the time for which the pulse is ON). Consecutive ON and OFF in a pulse is known as the duty cycle which can be calculated by the following equations.
+
+Duty cycle (%) = (tON x 100) / Period
+
+= (tON x 100) / (tON + tOFF)
+
+
