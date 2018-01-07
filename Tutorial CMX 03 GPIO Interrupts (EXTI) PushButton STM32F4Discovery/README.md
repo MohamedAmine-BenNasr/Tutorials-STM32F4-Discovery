@@ -10,7 +10,7 @@ This tutorial uses the following equipment:
 
 
 - STM32F4 Discovery Board.
-- Keil uVision 5with the necessary packages for STM32F4 Discovery boards installed.
+- Keil uVision 5 with the necessary packages for STM32F4 Discovery boards installed.
 - STLink USB Driver.
 - STM 32 CubeMX.
 
