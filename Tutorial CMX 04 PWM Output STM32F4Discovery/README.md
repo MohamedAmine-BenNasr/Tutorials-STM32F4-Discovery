@@ -21,7 +21,11 @@ Generating the config. files from STM32CubeMX.
 
 ![1](https://user-images.githubusercontent.com/32094503/34651893-36c09bf4-f3d7-11e7-87fb-3ea2d6e8723e.PNG)
 
-6. Click the configuration tab and click on the TIM4 button 
-7. The TIM4 is configured in PWM 1 mode and the pulsation is 0 (the upper code is dragged into the main code), the fast mode is deactivated and the polarity is set high.
+5. Click the configuration tab and click on the TIM4 button 
+6. The TIM4 is configured in PWM 1 mode and the pulsation is 0 (the upper code is dragged into the main code), the fast mode is deactivated and the polarity is set high.
 
 ![3](https://user-images.githubusercontent.com/32094503/34652043-4ce940a0-f3d9-11e7-9c94-bb4be8bcdb1c.PNG)
+
+7. Go to Project > Generate code.
+8. Enter a project name and select MDK-ARM V5.
+9. Generate the code and open the project in Keil uVision.
