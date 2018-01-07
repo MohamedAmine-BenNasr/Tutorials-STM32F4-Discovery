@@ -18,3 +18,5 @@ Generating the config. files from STM32CubeMX.
 2. Select the STM32F4 Discovery from the Borards tab.
 3. Set and configure the RCC (HSE) to Crystal/Ceramic Resonator.
 4. Set and configure TIM4 as PWM Generation CH1 (correspond to PD12 PIN).
+
+![1](https://user-images.githubusercontent.com/32094503/34651893-36c09bf4-f3d7-11e7-87fb-3ea2d6e8723e.PNG)
