@@ -94,3 +94,4 @@ Duty cycle (%) = (tON x 100) / Period
 = (tON x 100) / (tON + tOFF)
 
 
+![image](https://user-images.githubusercontent.com/32094503/34652215-9ba7446a-f3db-11e7-8a6c-d6ba75481d8b.png)
